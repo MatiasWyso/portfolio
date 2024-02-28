@@ -1,0 +1,55 @@
+<style>
+  .progress-container {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100%; /* Cambiamos la altura para que ocupe toda la pantalla verticalmente */
+    flex-direction: column; /* Cambiamos la dirección a column para que los elementos se alineen verticalmente */
+    justify-content: flex-end; /* Alineamos el contenido en la parte inferior del contenedor */
+    z-index: 1000; /* Ajusta según sea necesario */
+  }
+
+  /* Ajustamos la barra de progreso para que tenga una altura del 100% */
+  .progress-container .bg-gray-200 {
+    height: 100%;
+  }
+
+  /* Establecemos el color de la barra de progreso como azul oscuro */
+  .progress-container .bg-dark-blue {
+    background-color: #2c5282; /* Este es un azul oscuro, puedes ajustar el color según tus preferencias */
+  }
+</style>
+
+<div class="progress-container" id="progress-container">
+  <div class="bg-gray-200 rounded-full w-2.5 dark:bg-gray-700">
+    <div class="bg-dark-blue h-45% rounded-full" id="progress-bar"></div>
+  </div>
+</div>
+
+<script>
+  const progressContainer = document.getElementById("progress-container");
+  const progressBar = document.getElementById("progress-bar");
+
+  window.onscroll = function () {
+    showProgress();
+  };
+
+  function showProgress() {
+    const scrollTop =
+      document.documentElement.scrollTop || document.body.scrollTop;
+    const scrollHeight =
+      document.documentElement.scrollHeight || document.body.scrollHeight;
+    const clientHeight =
+      document.documentElement.clientHeight || document.body.clientHeight;
+
+    const scrollPercentage = (scrollTop / (scrollHeight - clientHeight)) * 100;
+
+    progressContainer &&
+      (progressContainer.style.display =
+        scrollPercentage > 0 ? "flex" : "none");
+    progressBar &&
+      (progressBar.style.height =
+        scrollPercentage > 0 ? `${scrollPercentage}%` : "0%");
+  }
+</script>
