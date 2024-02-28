@@ -1,0 +1,157 @@
+---
+import HTML from "./icons/HTML.astro"
+import GithubIcon from "./icons/Github.astro"
+import Reactjs from "./icons/Reactjs.astro"
+import Css from "./icons/Css.astro"
+import Nodejs from "./icons/Nodejs.astro"
+import Tailwind from "./icons/Tailwind.astro"
+import Bootstrap from "./icons/Bootstrap.astro"
+import WwwIcon from "./icons/Www.astro"
+import Firebase from "./icons/Firebase.astro"
+import IconAstro from "./icons/IconAstro.astro"
+import TypeScript from "./icons/TypeScript.astro"
+import Sass from "./icons/Sass.astro"
+
+const TAGS = {
+  HTML: {
+    name: "HTML",
+    class: "bg-orange text-white",
+    icon: HTML ,
+  },
+  REACT: {
+    name: "React",
+    class: "bg-grey text-white",
+    icon: Reactjs
+  },
+  CSS: {
+    name: "CSS",
+    class: "bg-iblue text-white",
+    icon: Css
+  },
+  TAILWIND: {
+    name: "Tailwind Css",
+    class: "bg-lightblue text-white",
+    icon: Tailwind
+  },
+  NODEJS: {
+    name: "NodeJs",
+    class: "bg-green text-white",
+    icon: Nodejs
+  },
+  BOOTSTRAP: {
+    name: "Bootstrap",
+    class: "bg-violet text-white",
+    icon: Bootstrap
+  },
+  FIREBASE: {
+    name: "Firebase",
+    class: "bg-mostaza text-white",
+    icon: Firebase
+  },
+  ASTRO: {
+    name:"Astro",
+    class: "bg-grey text-white",
+    icon: IconAstro,
+  },
+  TYPESCRIPT: {
+    name:"TypeScript",
+    class: "bg-darkblue text-white",
+    icon: TypeScript,
+  },
+    SASS: {
+    name: "Sass",
+    class: "bg-grey text-white",
+    icon: Sass
+    },
+  
+};
+
+const PROJECTS = [
+{
+  title: "Perla Libros",
+    description:
+      "Perla libros simula un e-commerce dedicado a la venta de libros. Se pueden agregar todos los productos que uno quiera al carrito para luego proceder a un precio total y realizar la compra con los datos del cliente. El proyecto está conectado a Firebase para facilitar la database, como asi todos sus productos y sus categorías.",
+    link: "https://perla-libros.vercel.app/",
+    github: "https://github.com/MatiasWyso/EntregaFinal-Wysoczanski",
+    image: "/images/proyecto3screen.png",
+    tags: [TAGS.REACT, TAGS.BOOTSTRAP, TAGS.FIREBASE],
+  }, 
+  {
+  title: "Lista de tareas",
+    description:
+      "Aplicación web utilizando React que permite gestionar una lista de tareas, esta app fue parte del trayecto de desarrollador Web con React JS para Argentina Programa. Su objetivo consta de los componentes funcionales con sus distintos tipos de hooks.",
+    link: "https://proyecto-to-do-list-xi.vercel.app/",
+    github: "https://github.com/LucasSaucedo014/Proyecto-To-Do-List-",
+    image: "/images/proyecto2screen.png",
+    tags: [TAGS.REACT, TAGS.NODEJS],
+  }, 
+  {
+    title: "El Refugio - Carpinteria",
+    description:
+      "Este proyecto representa mi primer paso en el mundo del desarrollo web utilizando HTML, CSS y la librería Bootstrap. Tiene como objetivo demostrar mis habilidades iniciales en la creación de sitios web estáticos y responsivos.",
+    link: "https://carpinteriaelrefugio.netlify.app/",
+    github: "https://github.com/MatiasWyso/El-refugio",
+    image: "/images/proyecto1screen.jpg",
+    tags: [TAGS.HTML, TAGS.CSS ,TAGS.BOOTSTRAP, TAGS.SASS],
+  },
+  {
+  title: "Mi portfolio",
+    description:
+      "Esta página fue creada con Astro y Tailwind CSS.",
+    link: "https://www.youtube.com/watch?v=RqJVa0fl01w",
+    github: "https://github.com/MatiasWyso/EntregaFinal-Wysoczanski",
+    image: "/images/proyecto4screen.png",
+    tags: [TAGS.ASTRO, TAGS.TAILWIND, TAGS.TYPESCRIPT],
+  }, 
+
+];
+---
+
+{
+  PROJECTS.map(({ title, description, tags, image, github, link}) => (
+    <article>
+      <h3 class="text-2xl font-semibold text-yellow-200/80 dark:text-white mb-2">
+        {title}
+      </h3>
+      <p class="text-lg mb-4 text-pretty">{description}</p>
+      <ul class="flex gap-x-2 flex-row mb-1">
+        {tags.map((tag) => (
+          <li> <span class={`flex gap-x-2 rounded-full text-xs ${tag.class} py-1 px-2 `}>
+            <tag.icon class="size-4" />
+            {tag.name}
+            </span></li>
+        ))}
+      </ul>
+      <img
+        class="rounded shadow-2xl shadow-white/15"
+        src={image}
+        alt="captura de pantalla del proyecto"
+      />
+      <div class="flex mt-1 justify-end mt-2 mb-20">
+  <a href={github} class="flex-shrink-0 rounded-full border border-white/10 flex justify-center items-center
+  text-xs lg:text-sm  py-1 px-3
+    bg-white/5 hover:scale-110 hover:bg-white/10 transition" 
+    {...Astro.props}
+    target="_blank"
+    rel="noopener noreferrer">
+    <GithubIcon class="w-5 h-5 mr-2" /> 
+    <span>Ver código</span>
+  </a>
+
+  <a href={link} class="flex-shrink-0 rounded-full border border-white/10 flex justify-center items-center
+  py-1 px-3
+    text-xs lg:text-sm 
+    bg-white/5 hover:scale-110 hover:bg-white/10 transition
+    ml-4" 
+    
+    {...Astro.props}
+    target="_blank"
+    rel="noopener noreferrer">
+    <WwwIcon class="w-5 h-5 mr-2"/>
+    <span>Visitar proyecto</span>
+  </a>
+</div>
+
+    </article>
+  ))
+}

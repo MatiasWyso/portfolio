@@ -1,0 +1,155 @@
+---
+import EducationItem from "./EducationItem.astro";
+
+const EDUCATION = [
+  {
+    date: "Noviembre 2023",
+    title: "Desarrollador Web con React JS - UTN",
+    description:
+      "Fin del trayecto formativo sobre programación de la Universidad Tecnológica Nacional en el marco de Argentina Programa 4.0.",
+    link: "/images/UTN-frontend.pdf",
+    img: "/images/UTN_logo.jpg",
+  },
+  {
+    date: "Septiembre 2023",
+    title: "Programación Backend - UNTREF",
+    description:
+      "Tercer tramo de desarrollador Backend en la Universidad Nacional de Tres de Febrero  (Node.js, Mongodb, MySQL).",
+    link: "/images/Backend-untref3.pdf",
+    img: "/images/Untref_logo.png",
+    
+  },
+  {
+      date: "Julio 2023",
+      title: "Programación Frontend - UNTREF",
+      description:
+        "Segunda etapa de desarrollador Frontend en la Universidad Nacional de Tres de Febrero. ",
+      link: "/images/UNTREF-frontend.pdf",
+      img: "/images/Untref_logo.png"
+    },
+];
+
+
+const EDUCATION2 = [
+  {
+    date: "Julio 2023",
+    title: "Programación Backend - UNTREF",
+    description:
+      "Segundo tramo: Curso de Programación Web Backend del Trayecto Desarrollador Web Backend, en la universidad Nacional de Tres de Febrero",
+    link: "/images/UNTREF-backend.pdf",
+    img: "/images/Untref_logo.png"
+  },
+  {
+    date: "Abril 2023",
+    title: "Introducción Argentina programa",
+    description:
+      "Capacitacion en programación y testing clasificados en trayectos formativos diseñados en base a perfiles laborales.",
+    link: "/images/argentina_programa_2023.pdf",
+    img: "/images/ArgPograma_logo.png"
+  },
+  {
+    date: "Octubre 2022",
+    title: "React Js - Coderhouse",
+    description:
+      "Librería más populare de JavaScript para el desarrollo de aplicaciones móviles y web.",
+    link: "http://",
+    img: "/images/Coder_logo.jpg"
+  },
+  {
+    date: "Junio 2023",
+    title: "Programación Backend - Coderhouse",
+    description: "Manejo de datos con Node.js y MongoDB.",
+    link: "http://",
+    img: "/images/Coder_logo.jpg"
+  },
+  {
+    date: "Agosto 2022",
+    title: "Javascript - Coderhouse",
+    description:
+      "Fundamentos del lenguaje de programación más usado en la actualidad, con el cual es posible crear aplicaciones de todo tipo.",
+    link: "http://",
+    img: "/images/Coder_logo.jpg"
+  },
+  {
+    date: "Junio 2022",
+    title: "Desarrollo web - Coderhouse",
+    description: "HTML, CSS, GIT, GitHub, Bootstrap, SASS.",
+    link: "http://",
+    img: "/images/Coder_logo.jpg"
+  },
+  {
+    date: "Agosto 2022",
+    title: "Javascript - Coderhouse",
+    description:
+      "Fundamentos del lenguaje de programación más usado en la actualidad, con el cual es posible crear aplicaciones de todo tipo.",
+    link: "http://",
+    img: "/images/Coder_logo.jpg"
+  },
+  {
+    date: "Junio 2022",
+    title: "Desarrollo web - Coderhouse",
+    description: "HTML, CSS, GIT, GitHub, Bootstrap, SASS.",
+    link: "http://",
+    img: "/images/Coder_logo.jpg"
+  },
+];
+
+
+---
+
+<div id="primerDiv">
+  <spa class="text-lg mb-4 text-pretty">
+    Tengo 25 años, vivo en La Plata y soy un desarrollador frontend con experiencia en React JS. Graduado en Coderhouse y la UTN. Apasionado por aprender y poner en práctica nuevas herramientas. Me gusta trabajar en equipo y estoy preparado para enfrentar nuevos desafíos y oportunidades de colaboración.
+  </spa>
+  <ol class="relative border-s border-gray-200 ml-3 mt-6 ">
+    {
+      EDUCATION.map((education) => (
+        <li class="mb-10 ms-4">
+          <EducationItem {...education} />
+        </li>
+      ))
+    }
+  </ol>
+</div>
+
+<button id="botonMostrar" class="rounded-full border border-white/10 flex justify-center items-center gap-x-2 py-1 px-2 md:py-2 md:px-4 text-xs lg:text-base bg-white/5 hover:scale-110 hover:bg-white/10 transition text-blue-200/90 dark:text-gray-500 ">
+  Ver más
+</button>
+<div id="education2" class="hidden">
+  <ol class="relative border-s border-gray-200 ml-3 mt-6">
+    {
+      EDUCATION2.map((education) => (
+        <li class="mb-10 ms-4">
+          <EducationItem {...education} />
+        </li>
+      ))
+    }
+  </ol>
+</div>
+<button id="botonOcultar" class="hidden rounded-full border border-white/10 flex justify-center items-center gap-x-2 py-1 px-2 md:py-2 md:px-4 text-xs lg:text-base text-blue-200/90 dark:text-gray-500 bg-white/5 hover:scale-110 hover:bg-white/10 transition">
+  Ver menos
+</button>
+
+<script>
+  const botonMostrar = document.getElementById('botonMostrar');
+  const botonOcultar = document.getElementById('botonOcultar');
+  const education2 = document.getElementById('education2');
+  const primerDiv = document.getElementById('primerDiv');
+
+  if (botonMostrar && botonOcultar && education2 && primerDiv) {
+    botonMostrar.addEventListener('click', function() {
+      education2.classList.remove('hidden');
+      botonMostrar.classList.add('hidden');
+      botonOcultar.classList.remove('hidden');
+    });
+    
+    botonOcultar.addEventListener('click', function() {
+      education2.classList.add('hidden');
+      botonMostrar.classList.remove('hidden');
+      botonOcultar.classList.add('hidden');
+      primerDiv.scrollIntoView({ behavior: 'auto' });
+    });
+  } else {
+    console.error('Uno o más elementos no se encontraron en el DOM.');
+  }
+</script>
